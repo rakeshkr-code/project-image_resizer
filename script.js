@@ -1,12 +1,21 @@
 const fileInput = document.getElementById('fileInput');
 const widthInput = document.getElementById('widthInput');
 const heightInput = document.getElementById('heightInput');
+const DPI = document.getElementById('dpiInput'); // pixels per inch
+const dpivalue = document.getElementById("value");
 const resizeButton = document.getElementById('resizeButton');
 const downloadLink = document.getElementById('downloadLink');
 const imagePreview = document.getElementById('imagePreview');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const DPI = 96; // pixels per inch
+
+// const value = document.getElementById("dpiOutVal")
+// const input = document.querySelector("#pi_input")
+dpivalue.textContent = DPI.value
+DPI.addEventListener("input", (event) => {
+	dpivalue.textContent = event.target.value
+})
+
 
 function resizeImage() {
 	// Get the uploaded image file
@@ -28,8 +37,8 @@ function resizeImage() {
 		// canvas.height = heightInput.value;
 
 		// Convert cm to pixels based on DPI
-		const widthInPx = widthInput.value * DPI / 2.54;
-		const heightInPx = heightInput.value * DPI / 2.54;
+		const widthInPx = widthInput.value * DPI.value / 2.54;
+		const heightInPx = heightInput.value * DPI.value / 2.54;
 
 		// Set the canvas dimensions to the desired size
 		canvas.width = widthInPx;
@@ -39,7 +48,7 @@ function resizeImage() {
 		ctx.drawImage(img, 0, 0, widthInPx, heightInPx);
 
 		// Export the resized image as a data URL and update the preview
-		const resizedImage = canvas.toDataURL('image/jpg', 0.9);
+		const resizedImage = canvas.toDataURL('image/jpg', 1.0);
 		imagePreview.src = resizedImage;
 
 		// Update the download link with the data URL of the resized image
