@@ -4,3 +4,12 @@ img {
 canvas {
     display: none;
 }
+#resizeButton {
+    border: 2px solid #5a4200;
+}
+#downloadLink {
+    border: 2px solid #0e3709;
+}
+/* .sec {
+    border: 2px solid black;
+} */
